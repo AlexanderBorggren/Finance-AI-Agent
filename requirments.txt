@@ -1,0 +1,6 @@
+google-generativeai 
+pandas 
+requests 
+rich 
+python-dotenv
+pytest
