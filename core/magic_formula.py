@@ -7,5 +7,8 @@ def rank_stocks(metrics_list: list[dict]) -> list[dict]:
     for i, entry in enumerate(sorted_by_ey):
         entry["ey_rank"] = i + 1
 
+    for entry in metrics_list:
+        entry["magic_score"] = entry["roc_rank"] + entry["ey_rank"]
+
     ranked = sorted(metrics_list, key=lambda x: x["magic_score"])
     return ranked

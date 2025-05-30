@@ -5,7 +5,7 @@ def fetch_fundamentals(ticker: str, source: ApiSource) -> dict:
     module = importlib.import_module(source.handler)
     
     if source.use_sdk:
-        return module.fetch_fundamentals_sdk(ticker)
+        return module.fetch_company_data_sdk(ticker)
     else:
-        return module.fetch_fundamentals(ticker, base_url=source.base_url)
+        return module.fetch_company_data(ticker, base_url=source.base_url)
     

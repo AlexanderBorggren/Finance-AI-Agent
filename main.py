@@ -1,15 +1,11 @@
-from api.dispatcher import fetch_fundamentals
+from application.processor import process_ticker_list
 from config.settings import API_SOURCE
 
 if __name__ == "__main__":
 
-    tickers_data = [
-       {"ticker": "AAPL"},
-       {"ticker": "MSFT"},
-       {"ticker": "GOOGL"}
-    ]
 
-    for ticker in tickers_data:
-        result = fetch_fundamentals(ticker, API_SOURCE)
+    tickers = ["MSFT", "AAPL", "GOOGL"]
+    ranked = process_ticker_list(tickers, API_SOURCE)
 
-    print(result)
+    for stock in ranked:
+        print(f"{stock['ticker']}: Magic Score = {stock['magic_score']}, ROIC = {stock['return_on_capital']}%, EY = {stock['earnings_yield']}%")
