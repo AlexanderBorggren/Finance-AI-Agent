@@ -21,3 +21,12 @@ def fetch_company_data_sdk(ticker: str) -> dict:
     except Exception as e:
         print(f"Fel vid hämtning av data för {ticker}: {e}")
         return {}
+    
+
+def fetch_tickers_sdk(exchange: str) -> list[str]:
+    try:
+        data = finnhub_client.stock_symbols(exchange)
+        return [item["symbol"] for item in data if item.get("type") == "Common Stock"]
+    except Exception as e:
+        print(f"Fel vid hämtning av tickers från börs {exchange}: {e}")
+        return []
